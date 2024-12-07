@@ -50,7 +50,11 @@ const FeedScreen = () => {
         }} //@ts-ignore
         leftIcon={
           //@ts-ignore
-          <SimpleLineIcons name="magnifier" size={20} color="gray" />
+          <SimpleLineIcons
+            name="magnifier"
+            size={20}
+            color={Theme.bottomBarInactiveText}
+          />
         }
         rightIcon={
           <TouchableOpacity
@@ -71,7 +75,11 @@ const FeedScreen = () => {
         />
       </ScrollView>
 
-      <CustomButton text={"Add Post"} onPress={() => {}} iconName="plus" />
+      <CustomButton
+        text={TextList.Add_Post}
+        onPress={() => {}}
+        iconName="plus"
+      />
     </ScreenContainer>
   );
 };

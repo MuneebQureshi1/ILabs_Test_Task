@@ -67,4 +67,9 @@ export const globalStyle=StyleSheet.create({
         fontSize: horizontalResponsive(17),
         fontWeight: "medium",
       },
+      comingsoonImage:{
+        width: horizontalResponsive(400),
+        height: verticalResponsive(400),
+        resizeMode: "cover",
+      }
 })
