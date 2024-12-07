@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "Tech Network",
+    "slug": "Tech_Network",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/AppLogo.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/AppLogo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/AppLogo.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/AppLogo.png"
+    }
+  }
+}
