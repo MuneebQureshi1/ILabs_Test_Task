@@ -1,4 +1,4 @@
-import { View, ViewStyle } from "react-native";
+import { TouchableOpacity, View, ViewStyle } from "react-native";
 import React, { ReactNode } from "react";
 import { Theme } from "../../constants/Theme";
 import { globalStyle } from "../../globalStyles/globalStyles";
@@ -8,10 +8,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { SvgXml } from "react-native-svg";
 import { svg } from "../../constants/svg";
 import { CustomText } from "../CustomText/CustomText";
-import {
-  horizontalResponsive,
-  verticalResponsive,
-} from "../../utils/responsiveControlFunctions";
 
 interface ScreenContainerProps {
   children: ReactNode;
@@ -48,17 +44,17 @@ export const ScreenContainer: React.FC<ScreenContainerProps> = ({
       >
         {/* Custom header */}
         <View style={globalStyle.headerStyle}>
-          <View style={globalStyle.verticalAlignment}>
+          <TouchableOpacity style={globalStyle.verticalAlignment}>
             <SvgXml xml={svg.hamBurger} />
-          </View>
+          </TouchableOpacity>
           <View style={[globalStyle.verticalAlignment]}>
             <CustomText style={globalStyle.headerTextStyle}>
               {HeaderLabel}
             </CustomText>
           </View>
-          <View style={globalStyle.verticalAlignment}>
+          <TouchableOpacity style={globalStyle.verticalAlignment}>
             <SvgXml xml={svg.activeSettingsIcon} />
-          </View>
+          </TouchableOpacity>
         </View>
         {loading ? (
           <View style={globalStyle.loaderContainer}>

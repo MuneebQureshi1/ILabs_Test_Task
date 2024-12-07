@@ -33,5 +33,18 @@ export const globalStyle=StyleSheet.create({
       },
       headerTextStyle:{
         fontSize: horizontalResponsive(17), fontWeight: "bold" 
+      },
+      defaultInputStyle:{
+        width: horizontalResponsive(361),
+        height: verticalResponsive(44),
+        alignSelf: "center",
+        borderRadius: horizontalResponsive(360),
+        backgroundColor: Theme.inputBackgroundColor,
+        paddingHorizontal: horizontalResponsive(15),
+        borderBottomWidth: 0,
+      },
+      inputDefaultTextStyle:{
+        fontSize: horizontalResponsive(17),
+        color: Theme.SearchInputPlaceHolderColor,
       }
 })
