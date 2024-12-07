@@ -5,5 +5,6 @@ export const Theme={
     inputBackgroundColor:"#fee8e4",
     SearchInputPlaceHolderColor:'#281D1B',
     black:'black',
-    tableCellDescription:'#beb5b2'
+    tableCellDescription:'#beb5b2',
+    white:'white'
 }

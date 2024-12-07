@@ -1,13 +1,14 @@
-import { FlatList, TouchableOpacity } from "react-native";
+import { FlatList, TouchableOpacity, ScrollView } from "react-native";
 import React, { useState } from "react";
 import { ScreenContainer } from "../../../components/ScreenContainer/ScreenConatiner";
 import { TextList } from "../../../constants/TextList";
 import { Theme } from "../../../constants/Theme";
-import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
+import { SimpleLineIcons } from "@expo/vector-icons";
 import { SvgXml } from "react-native-svg";
 import { svg } from "../../../constants/svg";
 import CustomInput from "../../../components/CustomInput/CustomInput";
 import FeedItemComponent from "./components/FeedItem";
+import CustomButton from "../../../components/CustomButton/CustomButton";
 const data = [
   { id: "1", title: "Buy groceries", description: "Milk, Bread, Eggs" },
   {
@@ -18,6 +19,15 @@ const data = [
   { id: "3", title: "Workout", description: "Yoga and strength training" },
   { id: "4", title: "Plan vacation", description: "Book flights and hotels" },
   { id: "5", title: "Read a book", description: "Finish the last chapter" },
+  { id: "6", title: "Read a book", description: "Finish the last chapter" },
+  { id: "7", title: "Read a book", description: "Finish the last chapter" },
+  { id: "8", title: "Read a book", description: "Finish the last chapter" },
+  { id: "9", title: "Read a book", description: "Finish the last chapter" },
+  { id: "10", title: "Read a book", description: "Finish the last chapter" },
+  { id: "11", title: "Read a book", description: "Finish the last chapter" },
+  { id: "522", title: "Read a book", description: "Finish the last chapter" },
+  { id: "533", title: "Read a book", description: "Finish the last chapter" },
+  { id: "5344", title: "Read a book", description: "Finish the last chapter" },
 ];
 const FeedScreen = () => {
   const [search, setSearch] = useState<string>("");
@@ -27,7 +37,10 @@ const FeedScreen = () => {
     item: { id: string; title: string; description: string };
   }) => <FeedItemComponent title={item.title} description={item.description} />;
   return (
-    <ScreenContainer HeaderLabel={TextList.feed}>
+    <ScreenContainer
+      HeaderLabel={TextList.feed}
+      style={{ justifyContent: "space-between", flex: 1 }}
+    >
       <CustomInput
         placeholder="Search Posts"
         placeholderTextColor={Theme.SearchInputPlaceHolderColor}
@@ -49,12 +62,16 @@ const FeedScreen = () => {
           </TouchableOpacity>
         }
       />
-      <FlatList
-        data={data}
-        keyExtractor={(item) => item.id}
-        renderItem={renderItem}
-        scrollEnabled={false}
-      />
+      <ScrollView>
+        <FlatList
+          data={data}
+          keyExtractor={(item) => item.id}
+          renderItem={renderItem}
+          scrollEnabled={false}
+        />
+      </ScrollView>
+
+      <CustomButton text={"Add Post"} onPress={() => {}} iconName="plus" />
     </ScreenContainer>
   );
 };

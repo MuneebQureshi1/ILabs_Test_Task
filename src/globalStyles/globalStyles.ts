@@ -46,5 +46,25 @@ export const globalStyle=StyleSheet.create({
       inputDefaultTextStyle:{
         fontSize: horizontalResponsive(17),
         color: Theme.SearchInputPlaceHolderColor,
-      }
+      },
+      buttonContainer: {
+        height: verticalResponsive(88),
+        justifyContent: "center",
+        alignItems: "center",
+      },
+      button: {
+        backgroundColor: Theme.bottomBarActiveText,
+        borderRadius: horizontalResponsive(360),
+        height: verticalResponsive(56),
+        width: horizontalResponsive(361),
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "row",
+        gap: horizontalResponsive(5),
+      },
+      buttonText: {
+        color: Theme.white,
+        fontSize: horizontalResponsive(17),
+        fontWeight: "medium",
+      },
 })

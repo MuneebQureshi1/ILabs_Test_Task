@@ -22,7 +22,9 @@ const FeedItemComponent: React.FC<FeedItemComponentProps> = ({
       <View style={FeedStyleSheet.FeedItemtextContainer}>
         <CustomText style={FeedStyleSheet.FeedItemtitle}>{title}</CustomText>
         <CustomText style={FeedStyleSheet.FeedItemdescription}>
-          {description}
+          {description.length > 50
+            ? `${description.slice(0, 50)}...`
+            : description}
         </CustomText>
       </View>
       <View style={FeedStyleSheet.FeedItemiconContainer}>
