@@ -1,4 +1,5 @@
 import { calenderSvg, feedSvg, postSvg, settingsSvg } from "../../assets/svgs/BottomBarIcons";
+import { HamburgerIcon } from "../../assets/svgs/FeedScreenIcons";
 import { Theme } from "./Theme";
 
 export const svg={
@@ -10,5 +11,6 @@ export const svg={
     InActiveCalenderIcon:calenderSvg(Theme.bottomBarInactiveText),
     activeSettingsIcon:settingsSvg(Theme.bottomBarActiveText),
     InActiveSettingsIcon:settingsSvg(Theme.bottomBarInactiveText),
+    hamBurger:HamburgerIcon
     
 }

@@ -1,5 +1,7 @@
-import { StyleSheet } from "react-native";
-import { verticalResponsive } from "../utils/responsiveControlFunctions";
+import { Platform, StyleSheet } from "react-native";
+import { horizontalResponsive, verticalResponsive } from "../utils/responsiveControlFunctions";
+import { heightPercentageToDP as hp} from "react-native-responsive-screen";
+import { Theme } from "../constants/Theme";
 
 export const globalStyle=StyleSheet.create({
     elevation0:{
@@ -7,6 +9,29 @@ export const globalStyle=StyleSheet.create({
     },
     bottomBarStlye:{
         elevation:0,
-        height:verticalResponsive(60)
-    }
+        height:verticalResponsive(60),
+        backgroundColor:Theme.mainBackgroundColor,
+        borderTopWidth:0
+    },
+    Flex1:{
+        flex:1
+    },
+    loaderContainer:{
+        justifyContent: "center",
+        height:
+          Platform.OS == "android" ? hp(100) : hp(90),
+      },
+      headerStyle:{
+        flexDirection:'row',
+        height:verticalResponsive(48),
+        justifyContent:'space-between',
+        paddingHorizontal:horizontalResponsive(20),
+      },
+      verticalAlignment:{
+        justifyContent:"center",
+        alignItems:"center"
+      },
+      headerTextStyle:{
+        fontSize: horizontalResponsive(17), fontWeight: "bold" 
+      }
 })

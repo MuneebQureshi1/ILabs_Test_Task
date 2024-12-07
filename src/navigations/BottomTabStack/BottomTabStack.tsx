@@ -9,6 +9,7 @@ import CustomTabBarIcon from "../../components/CustomBottomBarIcon.tsx/CustomBot
 import { svg } from "../../constants/svg";
 import { Theme } from "../../constants/Theme";
 import { globalStyle } from "../../globalStyles/globalStyles";
+import { TextList } from "../../constants/TextList";
 
 const BottomTabStackNavigator = createBottomTabNavigator<BottomTabParamsList>();
 
@@ -25,7 +26,7 @@ export default function BottomTabStack() {
         name="FeedStack"
         component={FeedStack}
         options={{
-          tabBarLabel: "Feed",
+          tabBarLabel: TextList.feed,
           tabBarActiveTintColor: Theme.bottomBarActiveText,
           tabBarInactiveTintColor: Theme.bottomBarInactiveText,
           tabBarIcon: ({ focused }) => (
@@ -41,7 +42,7 @@ export default function BottomTabStack() {
         name="PostStack"
         component={PostStack}
         options={{
-          tabBarLabel: "Posts",
+          tabBarLabel: TextList.posts,
           tabBarActiveTintColor: Theme.bottomBarActiveText,
           tabBarInactiveTintColor: Theme.bottomBarInactiveText,
           tabBarIcon: ({ focused }) => (
@@ -57,7 +58,7 @@ export default function BottomTabStack() {
         name="CalenderStack"
         component={CalenderStack}
         options={{
-          tabBarLabel: "Calender",
+          tabBarLabel: TextList.Calender,
           tabBarActiveTintColor: Theme.bottomBarActiveText,
           tabBarInactiveTintColor: Theme.bottomBarInactiveText,
           tabBarIcon: ({ focused }) => (
@@ -73,7 +74,7 @@ export default function BottomTabStack() {
         name="SettingStack"
         component={SettingStack}
         options={{
-          tabBarLabel: "Settings",
+          tabBarLabel: TextList.Settings,
           tabBarActiveTintColor: Theme.bottomBarActiveText,
           tabBarInactiveTintColor: Theme.bottomBarInactiveText,
           tabBarIcon: ({ focused }) => (

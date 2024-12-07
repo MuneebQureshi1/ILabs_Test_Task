@@ -1,11 +1,12 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import React from "react";
+import { ScreenContainer } from "../../../components/ScreenContainer/ScreenConatiner";
 
 const SettingScreen = () => {
   return (
-    <View>
+    <ScreenContainer>
       <Text>SettingScreen</Text>
-    </View>
+    </ScreenContainer>
   );
 };
 
