@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { Alert } from "react-native";
 import { Formik } from "formik";
 import { ScreenContainer } from "../../../components/ScreenContainer/ScreenConatiner";
 import CustomInput from "../../../components/CustomInput/CustomInput";
@@ -14,10 +14,15 @@ import {
 import { SvgXml } from "react-native-svg";
 import { svg } from "../../../constants/svg";
 import { AddPostValidationSchema } from "../../../constants/validationSchemas";
+import useCallApiWhenRequired from "../../../hooks/useCallApiWhenRequired";
+import usePostApi from "../../../services/ApiHooks/postApis";
 
 const AddPostScreen = ({ route }: any) => {
   const { editForm, previousData } = route?.params || {};
-
+  const { addPostApi } = usePostApi();
+  const { loading, callApi } = useCallApiWhenRequired(addPostApi, (data) => {
+    Alert.alert("Success", "Post added successfully");
+  });
   return (
     <ScreenContainer
       HeaderLabel={editForm ? TextList.Edit_Post : TextList.Add_New_Post}
@@ -25,11 +30,15 @@ const AddPostScreen = ({ route }: any) => {
       <Formik
         initialValues={{
           title: previousData?.title || "",
-          description: previousData?.description || "",
+          description: previousData?.body || "",
         }}
         validationSchema={AddPostValidationSchema}
         onSubmit={(values) => {
           console.log("Form submitted with values: ", values);
+          callApi({
+            title: values.title,
+            body: values.description,
+          });
           // Handle submission here, e.g., send data to an API or navigate
         }}
       >
@@ -72,6 +81,7 @@ const AddPostScreen = ({ route }: any) => {
             <CustomButton
               text={editForm ? TextList.Edit_Post : TextList.Add_Post}
               onPress={handleSubmit}
+              loading={loading}
             />
           </>
         )}
@@ -81,5 +91,3 @@ const AddPostScreen = ({ route }: any) => {
 };
 
 export default AddPostScreen;
-
-const styles = StyleSheet.create({});
