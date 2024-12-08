@@ -1,5 +1,5 @@
 import { FlatList, TouchableOpacity, ScrollView } from "react-native";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { ScreenContainer } from "../../../components/ScreenContainer/ScreenConatiner";
 import { TextList } from "../../../constants/TextList";
 import { Theme } from "../../../constants/Theme";
@@ -15,6 +15,13 @@ const FeedScreen = ({ navigation }: any) => {
   const [search, setSearch] = useState<string>("");
   const { getAllPostApi } = useGetApi();
   const { data, loading } = useCallApiOnLoad(getAllPostApi);
+
+  const filteredData = useMemo(() => {
+    if (!search) return data; // If no search, return all data
+    return data.filter((item: { title: string; body: string }) => {
+      return item.title.toLowerCase().includes(search.toLowerCase());
+    });
+  }, [search, data]);
   const renderItem = ({
     item,
   }: {
@@ -61,13 +68,14 @@ const FeedScreen = ({ navigation }: any) => {
       />
       <ScrollView>
         <FlatList
-          data={data}
+          data={filteredData}
           keyExtractor={(item) => item.id}
           renderItem={renderItem}
           scrollEnabled={false}
-          initialNumToRender={5}
-          maxToRenderPerBatch={5}
-          windowSize={5}
+          initialNumToRender={10}
+          maxToRenderPerBatch={10}
+          windowSize={10}
+          onEndReachedThreshold={0.5}
         />
       </ScrollView>
 
