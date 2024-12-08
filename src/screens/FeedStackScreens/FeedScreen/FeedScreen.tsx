@@ -35,7 +35,15 @@ const FeedScreen = ({ navigation }: any) => {
     item,
   }: {
     item: { id: string; title: string; description: string };
-  }) => <FeedItemComponent title={item.title} description={item.description} />;
+  }) => (
+    <FeedItemComponent
+      title={item.title}
+      description={item.description}
+      editOnPress={() => {
+        navigation.navigate("AddPost", { editForm: true, previousData: item });
+      }}
+    />
+  );
   return (
     <ScreenContainer
       HeaderLabel={TextList.feed}

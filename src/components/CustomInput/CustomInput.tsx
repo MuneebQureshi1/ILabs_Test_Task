@@ -9,6 +9,7 @@ interface CustomInputProps {
   onChangeText?: (text: string) => void; // Optional callback for handling input changes
   value?: string; // Optional value to control the input's value
   style?: object; // Custom style for additional flexibility
+  errorMessage?: string;
 }
 
 const CustomInput: React.FC<CustomInputProps> = ({
@@ -17,6 +18,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
   onChangeText,
   value,
   style,
+  errorMessage,
   ...props
 }) => {
   return (
@@ -27,6 +29,8 @@ const CustomInput: React.FC<CustomInputProps> = ({
       inputStyle={globalStyle.inputDefaultTextStyle}
       placeholder={placeholder}
       placeholderTextColor={placeholderTextColor}
+      errorStyle={globalStyle.errorText}
+      errorMessage={errorMessage}
       {...props}
     />
   );

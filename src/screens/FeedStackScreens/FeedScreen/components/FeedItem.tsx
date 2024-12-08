@@ -1,5 +1,5 @@
 import React from "react";
-import { View, ViewStyle } from "react-native";
+import { TouchableOpacity, View, ViewStyle } from "react-native";
 import { SvgXml } from "react-native-svg";
 import { CustomText } from "../../../../components/CustomText/CustomText";
 import { FeedStyleSheet } from "../FeedStyleSheet";
@@ -10,12 +10,14 @@ interface FeedItemComponentProps {
   title: string;
   description: string;
   containerStyle?: ViewStyle; // Optional container style
+  editOnPress?: () => void;
 }
 
 const FeedItemComponent: React.FC<FeedItemComponentProps> = ({
   title,
   description,
   containerStyle,
+  editOnPress,
 }) => {
   return (
     <View style={[FeedStyleSheet.FeedItemcontainer, containerStyle]}>
@@ -27,9 +29,12 @@ const FeedItemComponent: React.FC<FeedItemComponentProps> = ({
             : description}
         </CustomText>
       </View>
-      <View style={FeedStyleSheet.FeedItemiconContainer}>
+      <TouchableOpacity
+        onPress={editOnPress}
+        style={FeedStyleSheet.FeedItemiconContainer}
+      >
         <SvgXml xml={svg.edit} />
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };

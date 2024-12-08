@@ -98,4 +98,13 @@ export const globalStyle=StyleSheet.create({
         borderBottomLeftRadius: 0,
         paddingLeft: horizontalResponsive(5),
       },
+      errorText: {
+        color: Theme.red,
+        fontSize:horizontalResponsive(12),
+        marginTop: verticalResponsive(5),
+        marginLeft: horizontalResponsive(20),
+      },
+      mL30:{
+        marginLeft: verticalResponsive(30) 
+      }
 })
