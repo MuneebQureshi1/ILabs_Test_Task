@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import FeedStack from "./FeedStack/FeedStack";
 import PostStack from "./PostStack/PostStack";
@@ -10,10 +10,34 @@ import { svg } from "../../constants/svg";
 import { Theme } from "../../constants/Theme";
 import { globalStyle } from "../../globalStyles/globalStyles";
 import { TextList } from "../../constants/TextList";
+import { useNavigationState } from "@react-navigation/native";
+import { BackHandler } from "react-native";
 
 const BottomTabStackNavigator = createBottomTabNavigator<BottomTabParamsList>();
 
 export default function BottomTabStack() {
+  const navigationState = useNavigationState((state) => state);
+  const specificScreens = ["Feed", "Post", "Calender", "Settings"];
+
+  useEffect(() => {
+    const backAction = () => {
+      // Check if the active tab is Dashboard
+      const activeTab = navigationState?.routes[navigationState.index]?.name;
+      if (specificScreens.includes(activeTab)) {
+        return true; // Prevent back navigation
+      }
+      return false; // Allow default behavior
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+
+    // Cleanup the listener on unmount
+    return () => backHandler.remove();
+  }, [navigationState]);
+
   return (
     <BottomTabStackNavigator.Navigator
       initialRouteName="FeedStack"

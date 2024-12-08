@@ -19,10 +19,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/AppLogo.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.ilabTestTask.TechNetwork"
     },
     "web": {
       "favicon": "./assets/AppLogo.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "03d29eec-190e-46bd-8836-a8e5d49bf6ba"
+      }
     }
   }
 }
