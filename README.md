@@ -7,6 +7,7 @@
   <img src="./assets/AppScreenshot2.png" alt="Screenshot 2" width="30%" />
   <img src="./assets/AppScreenshot1.png" alt="Screenshot 3" width="30%" />
 </div>
+
 ## Description
 Tech network is a mobile application developed using **React Native Expo**. Designed for both iOS and Android platforms, it offers seamless cross-platform compatibility and a modern user experience.
 
