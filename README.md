@@ -1,4 +1,8 @@
-# [Tech network]
+# Tech network [iLabs Test Task ]
+
+![App Screenshot](./assets/AppScreenshot1.png "App Screenshot")
+![App Screenshot](./assets/AppScreenshot2.png "App Screenshot")
+![App Screenshot](./assets/AppScreenshot3.png "App Screenshot")
 
 ## Description
 Tech network is a mobile application developed using **React Native Expo**. Designed for both iOS and Android platforms, it offers seamless cross-platform compatibility and a modern user experience.
