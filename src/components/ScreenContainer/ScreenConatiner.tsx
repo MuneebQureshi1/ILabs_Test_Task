@@ -8,6 +8,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { SvgXml } from "react-native-svg";
 import { svg } from "../../constants/svg";
 import { CustomText } from "../CustomText/CustomText";
+import { useNavigation, useNavigationState } from "@react-navigation/native";
 
 interface ScreenContainerProps {
   children: ReactNode;
@@ -24,6 +25,10 @@ export const ScreenContainer: React.FC<ScreenContainerProps> = ({
   backgroundColor = Theme.mainBackgroundColor,
   HeaderLabel,
 }) => {
+  const navigation = useNavigation<any>();
+  const routes = useNavigationState((state) => state.routes);
+  const currentScreen = routes[routes.length - 1].name;
+  const specificScreens = ["Feed", "Post", "Calender", "Settings"];
   return (
     <SafeAreaView
       style={[
@@ -44,9 +49,20 @@ export const ScreenContainer: React.FC<ScreenContainerProps> = ({
       >
         {/* Custom header */}
         <View style={globalStyle.headerStyle}>
-          <TouchableOpacity style={globalStyle.verticalAlignment}>
-            <SvgXml xml={svg.hamBurger} />
-          </TouchableOpacity>
+          {specificScreens.includes(currentScreen) ? (
+            <TouchableOpacity style={globalStyle.verticalAlignment}>
+              <SvgXml xml={svg.hamBurger} />
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              style={globalStyle.verticalAlignment}
+              onPress={() => {
+                navigation.goBack();
+              }}
+            >
+              <SvgXml xml={svg.back} />
+            </TouchableOpacity>
+          )}
           <View style={[globalStyle.verticalAlignment]}>
             <CustomText style={globalStyle.headerTextStyle}>
               {HeaderLabel}

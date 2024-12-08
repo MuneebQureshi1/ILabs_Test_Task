@@ -1,5 +1,5 @@
 import { calenderSvg, feedSvg, postSvg, settingsSvg } from "../../assets/svgs/BottomBarIcons";
-import { HamburgerIcon, crossIcon, editIcon } from "../../assets/svgs/FeedScreenIcons";
+import { HamburgerIcon, backIcon, crossIcon, editIcon } from "../../assets/svgs/FeedScreenIcons";
 import { Theme } from "./Theme";
 
 export const svg={
@@ -14,5 +14,6 @@ export const svg={
     hamBurger:HamburgerIcon,
     cross:crossIcon,
     edit:editIcon,
+    back:backIcon
     
 }

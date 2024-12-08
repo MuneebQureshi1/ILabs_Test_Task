@@ -29,7 +29,7 @@ const data = [
   { id: "533", title: "Read a book", description: "Finish the last chapter" },
   { id: "5344", title: "Read a book", description: "Finish the last chapter" },
 ];
-const FeedScreen = () => {
+const FeedScreen = ({ navigation }: any) => {
   const [search, setSearch] = useState<string>("");
   const renderItem = ({
     item,
@@ -77,7 +77,9 @@ const FeedScreen = () => {
 
       <CustomButton
         text={TextList.Add_Post}
-        onPress={() => {}}
+        onPress={() => {
+          navigation.navigate("AddPost");
+        }}
         iconName="plus"
       />
     </ScreenContainer>
