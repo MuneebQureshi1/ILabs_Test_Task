@@ -16,13 +16,23 @@ import { svg } from "../../../constants/svg";
 import { AddPostValidationSchema } from "../../../constants/validationSchemas";
 import useCallApiWhenRequired from "../../../hooks/useCallApiWhenRequired";
 import usePostApi from "../../../services/ApiHooks/postApis";
+import usePutApi from "../../../services/ApiHooks/putApi";
 
 const AddPostScreen = ({ route }: any) => {
   const { editForm, previousData } = route?.params || {};
   const { addPostApi } = usePostApi();
-  const { loading, callApi } = useCallApiWhenRequired(addPostApi, (data) => {
-    Alert.alert("Success", "Post added successfully");
-  });
+  const { updatdePostApi } = usePutApi();
+  const { loading: addPostLoading, callApi: addPostFunc } =
+    useCallApiWhenRequired(addPostApi, () => {
+      Alert.alert("Success", "Post added successfully");
+    });
+  const {
+    loading: updatePostLoading,
+    callApi: updatePostFunc,
+  } = //@ts-ignore
+    useCallApiWhenRequired(updatdePostApi, () => {
+      Alert.alert("Success", "Post updatded successfully");
+    });
   return (
     <ScreenContainer
       HeaderLabel={editForm ? TextList.Edit_Post : TextList.Add_New_Post}
@@ -35,11 +45,18 @@ const AddPostScreen = ({ route }: any) => {
         validationSchema={AddPostValidationSchema}
         onSubmit={(values) => {
           console.log("Form submitted with values: ", values);
-          callApi({
-            title: values.title,
-            body: values.description,
-          });
-          // Handle submission here, e.g., send data to an API or navigate
+          if (editForm) {
+            updatePostFunc({
+              title: values.title,
+              body: values.description,
+              id: previousData.id,
+            });
+          } else {
+            addPostFunc({
+              title: values.title,
+              body: values.description,
+            });
+          }
         }}
       >
         {({
@@ -81,7 +98,7 @@ const AddPostScreen = ({ route }: any) => {
             <CustomButton
               text={editForm ? TextList.Edit_Post : TextList.Add_Post}
               onPress={handleSubmit}
-              loading={loading}
+              loading={addPostLoading || updatePostLoading}
             />
           </>
         )}
