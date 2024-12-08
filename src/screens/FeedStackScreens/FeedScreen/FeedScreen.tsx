@@ -9,36 +9,20 @@ import { svg } from "../../../constants/svg";
 import CustomInput from "../../../components/CustomInput/CustomInput";
 import FeedItemComponent from "./components/FeedItem";
 import CustomButton from "../../../components/CustomButton/CustomButton";
-const data = [
-  { id: "1", title: "Buy groceries", description: "Milk, Bread, Eggs" },
-  {
-    id: "2",
-    title: "Complete project",
-    description: "Finalize the UI/UX design",
-  },
-  { id: "3", title: "Workout", description: "Yoga and strength training" },
-  { id: "4", title: "Plan vacation", description: "Book flights and hotels" },
-  { id: "5", title: "Read a book", description: "Finish the last chapter" },
-  { id: "6", title: "Read a book", description: "Finish the last chapter" },
-  { id: "7", title: "Read a book", description: "Finish the last chapter" },
-  { id: "8", title: "Read a book", description: "Finish the last chapter" },
-  { id: "9", title: "Read a book", description: "Finish the last chapter" },
-  { id: "10", title: "Read a book", description: "Finish the last chapter" },
-  { id: "11", title: "Read a book", description: "Finish the last chapter" },
-  { id: "522", title: "Read a book", description: "Finish the last chapter" },
-  { id: "533", title: "Read a book", description: "Finish the last chapter" },
-  { id: "5344", title: "Read a book", description: "Finish the last chapter" },
-];
+import useCallApiOnLoad from "../../../hooks/useCallApiOnload";
+import useGetApi from "../../../services/ApiHooks/getApis";
 const FeedScreen = ({ navigation }: any) => {
   const [search, setSearch] = useState<string>("");
+  const { getAllPostApi } = useGetApi();
+  const { data, loading } = useCallApiOnLoad(getAllPostApi);
   const renderItem = ({
     item,
   }: {
-    item: { id: string; title: string; description: string };
+    item: { id: string; title: string; body: string };
   }) => (
     <FeedItemComponent
       title={item.title}
-      description={item.description}
+      description={item.body}
       editOnPress={() => {
         navigation.navigate("AddPost", { editForm: true, previousData: item });
       }}
@@ -48,6 +32,7 @@ const FeedScreen = ({ navigation }: any) => {
     <ScreenContainer
       HeaderLabel={TextList.feed}
       style={{ justifyContent: "space-between", flex: 1 }}
+      loading={loading}
     >
       <CustomInput
         placeholder="Search Posts"
@@ -80,6 +65,9 @@ const FeedScreen = ({ navigation }: any) => {
           keyExtractor={(item) => item.id}
           renderItem={renderItem}
           scrollEnabled={false}
+          initialNumToRender={5}
+          maxToRenderPerBatch={5}
+          windowSize={5}
         />
       </ScrollView>
 
