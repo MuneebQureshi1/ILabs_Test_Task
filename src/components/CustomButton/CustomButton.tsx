@@ -23,6 +23,7 @@ type CustomButtonProps = {
   buttonStyle?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
   loading?: boolean; // New prop for loading state
+  disabled?: boolean;
 };
 
 const CustomButton: React.FC<CustomButtonProps> = ({
@@ -34,14 +35,25 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   buttonStyle,
   textStyle,
   loading = false, // Default is not loading
+  disabled = false,
 }) => {
   return (
     <View style={globalStyle.buttonContainer}>
       <TouchableOpacity
-        style={[globalStyle.button, buttonStyle]}
+        style={[
+          globalStyle.button,
+          {
+            backgroundColor:
+              disabled || loading
+                ? Theme.tableCellDescription
+                : Theme.bottomBarActiveText,
+          },
+          ,
+          buttonStyle,
+        ]}
         activeOpacity={0.7}
         onPress={loading ? undefined : onPress} // Disable onPress if loading
-        disabled={loading} // Disable button when loading
+        disabled={loading || disabled} // Disable button when loading
       >
         {loading ? (
           <Loader color={Theme.white} size={"small"} />

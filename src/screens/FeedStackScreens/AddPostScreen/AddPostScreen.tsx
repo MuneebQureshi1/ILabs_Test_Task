@@ -44,7 +44,6 @@ const AddPostScreen = ({ route }: any) => {
         }}
         validationSchema={AddPostValidationSchema}
         onSubmit={(values) => {
-          console.log("Form submitted with values: ", values);
           if (editForm) {
             updatePostFunc({
               title: values.title,
@@ -66,42 +65,52 @@ const AddPostScreen = ({ route }: any) => {
           values,
           errors,
           touched,
-        }) => (
-          <>
-            <CustomInput
-              placeholder={TextList.Post_Tile}
-              placeholderTextColor={Theme.tableCellDescription}
-              value={values.title}
-              onChangeText={handleChange("title")} //@ts-ignore
-              leftIcon={<SvgXml xml={svg.postTitle} />}
-              style={{
-                height: verticalResponsive(50),
-                borderRadius: horizontalResponsive(20),
-              }} //@ts-ignore
-              errorMessage={touched.title && errors.title && errors.title}
-              onBlur={handleBlur("title")}
-            />
-            <CustomTextArea
-              placeholder={TextList.Post_Description}
-              placeholderTextColor={Theme.tableCellDescription}
-              value={values.description}
-              onChangeText={handleChange("description")}
-              onBlur={handleBlur("description")}
-              leftIcon={
-                <SvgXml xml={svg.descriptionIcon} height={20} width={20} />
-              } //@ts-ignore
-              errorMessage={
-                touched.description && errors.description && errors.description
-              }
-            />
+        }) => {
+          const isFormUnchanged =
+            values?.title === previousData?.title &&
+            values?.description === previousData?.body;
+          return (
+            <>
+              <CustomInput
+                placeholder={TextList.Post_Tile}
+                placeholderTextColor={Theme.tableCellDescription}
+                value={values.title}
+                onChangeText={handleChange("title")} //@ts-ignore
+                leftIcon={<SvgXml xml={svg.postTitle} />}
+                style={{
+                  height: verticalResponsive(50),
+                  borderRadius: horizontalResponsive(20),
+                }} //@ts-ignore
+                errorMessage={touched.title && errors.title && errors.title}
+                onBlur={handleBlur("title")}
+              />
+              <CustomTextArea
+                placeholder={TextList.Post_Description}
+                placeholderTextColor={Theme.tableCellDescription}
+                value={values.description}
+                onChangeText={handleChange("description")}
+                onBlur={handleBlur("description")}
+                leftIcon={
+                  <SvgXml xml={svg.descriptionIcon} height={20} width={20} />
+                } //@ts-ignore
+                errorMessage={
+                  touched.description &&
+                  errors.description &&
+                  errors.description
+                }
+              />
 
-            <CustomButton
-              text={editForm ? TextList.Edit_Post : TextList.Add_Post}
-              onPress={handleSubmit}
-              loading={addPostLoading || updatePostLoading}
-            />
-          </>
-        )}
+              <CustomButton
+                disabled={
+                  isFormUnchanged || addPostLoading || updatePostLoading
+                }
+                text={editForm ? TextList.Edit_Post : TextList.Add_Post}
+                onPress={handleSubmit}
+                loading={addPostLoading || updatePostLoading}
+              />
+            </>
+          );
+        }}
       </Formik>
     </ScreenContainer>
   );
