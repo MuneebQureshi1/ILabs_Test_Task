@@ -24,14 +24,14 @@ const AddPostScreen = ({ route }: any) => {
   const { updatdePostApi } = usePutApi();
   const { loading: addPostLoading, callApi: addPostFunc } =
     useCallApiWhenRequired(addPostApi, () => {
-      Alert.alert("Success", "Post added successfully");
+      Alert.alert("Success", "The post has been successfully added.");
     });
   const {
     loading: updatePostLoading,
     callApi: updatePostFunc,
   } = //@ts-ignore
     useCallApiWhenRequired(updatdePostApi, () => {
-      Alert.alert("Success", "Post updatded successfully");
+      Alert.alert("Success", "The post has been successfully updated.");
     });
   return (
     <ScreenContainer
