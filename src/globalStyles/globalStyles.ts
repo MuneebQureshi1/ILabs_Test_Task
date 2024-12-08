@@ -71,5 +71,31 @@ export const globalStyle=StyleSheet.create({
         width: horizontalResponsive(400),
         height: verticalResponsive(400),
         resizeMode: "cover",
-      }
+      },
+      CustomTextAreacontainer: {
+        flexDirection: "row",
+        borderRadius: horizontalResponsive(20),
+        marginHorizontal: horizontalResponsive(20),
+      },
+      CustomTextAreaiconLeft: {
+        backgroundColor: Theme.inputBackgroundColor,
+        borderTopLeftRadius: horizontalResponsive(20),
+        borderBottomLeftRadius: horizontalResponsive(20),
+        paddingTop: verticalResponsive(10),
+        paddingLeft: horizontalResponsive(10),
+      },
+      CustomTextAreaiconRight: {
+        marginLeft: horizontalResponsive(8),
+      },
+      textArea: {
+        flex: 1,
+        height: verticalResponsive(200), // Default height for textarea
+        textAlignVertical: "top",
+        textAlign: "left",
+        borderTopRightRadius: horizontalResponsive(20),
+        borderBottomRightRadius: horizontalResponsive(20),
+        borderTopLeftRadius: 0,
+        borderBottomLeftRadius: 0,
+        paddingLeft: horizontalResponsive(5),
+      },
 })
